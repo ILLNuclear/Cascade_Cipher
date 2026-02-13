@@ -1,7 +1,7 @@
 import string
 
 def cascade_decrypt(plaintext):
-    A_Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    A_Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" #Initial state
     n_to_x = {i + 1: c for i, c in enumerate(A_Z)}
 
     deck = list(A_Z)
@@ -20,6 +20,6 @@ def cascade_decrypt(plaintext):
         deck.extend(temp_pile)
 
     return "".join(plaintext)
-ciphertext = ""
+ciphertext = "" #Input ciphertext
 plaintext = cascade_decrypt(ciphertext)
 print(plaintext)
