@@ -1,7 +1,7 @@
 import string
 
 def cascade_decrypt(plaintext):
-    A_Z = string.ascii_uppercase
+    A_Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     n_to_x = {i + 1: c for i, c in enumerate(A_Z)}
 
     deck = list(A_Z)
