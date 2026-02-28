@@ -1,0 +1,36 @@
+Set up
+
+Let Alphabet be Σ = {1,2,…,26} where A=1 and Z=26.
+
+The state at time t is a permutation, and is represented as an ordered tuple:
+
+Sₜ = {s₁(t),s₂(t),...,s₂₆(t)​} where sₙ(t) describes a change in order.
+The Initial state S₀ describes the chosen key.
+
+For each n ∈ {1,…,26}, define the transformation Tₙ : Sₜ₋₁ → Sₜ as follows:
+
+Given S = {s₁,s₂,...,s₂₆​} define Tₙ(S) = {sₙ₊₁,sₙ₊₂,...,s₂₆,sₙ,sₙ₋₁,...,s₁}
+
+Encryption
+
+Let plaintext be the sequence: P = {p₁,p₂,...,pₓ}, pₜ ∈ Σ  
+Let ciphertext be the sequence: C = {c₁,c₂,...,cₓ}
+
+The state evolves recursively according to:
+
+Sₜ = Tₚₜ(Sₜ₋₁), t = 1,2,...,x
+
+Therefore ciphertext character is defined by cₜ = s₁(t), the first element of the updated permutation Sₜ
+
+The encryption mapping with key S₀ is therefore:
+
+Enc(S₀​(P) = C, determined by the above state evolution and output rule.
+
+Decryption
+
+The transformation Tₙ is a bijection, and therefore always has an inverse. So each individual step is reversible.
+So the map pₜ ↦ cₜ is bijective, which means there is a unique pₜ that yields the observed cₜ, and the Encryption is reversible to find the Decryption.
+
+Obvious Issue
+
+An issue arises when looking at S₂₅ and S₂₆​, which produce identical results. Meaning pₜ will only ever take 25 unique characters with the same state before character decryption, vice versa for encryption.
