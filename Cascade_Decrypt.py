@@ -1,25 +1,25 @@
 import string
+from collections import deque
 
-def cascade_decrypt(plaintext):
-    A_Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" #Initial state
-    n_to_x = {i + 1: c for i, c in enumerate(A_Z)}
+def cascade_decrypt(ciphertext):
+    KEY = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" #Keyed Initial state
+    n_to_x = {i + 1: c for i, c in enumerate(KEY)}
 
-    deck = list(A_Z)
+    deck = deque(KEY)
     plaintext = []
-    
+
     for ch in ciphertext.upper():
         temp_pile = []
         count = 0
-        
+    
         while deck[0] != ch:
-            temp_pile.append(deck.pop(0))
+            temp_pile.append(deck.popleft())
             count += 1
-        
+    
         plaintext.append(n_to_x[count])
-        temp_pile.reverse()
-        deck.extend(temp_pile)
+        deck.extend(reversed(temp_pile))
 
     return "".join(plaintext)
-ciphertext = "" #Input ciphertext
+ciphertext = ""  #Input ciphertext
 plaintext = cascade_decrypt(ciphertext)
 print(plaintext)
